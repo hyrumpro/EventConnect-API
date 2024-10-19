@@ -3,20 +3,20 @@ const router = express.Router();
 const { body, param } = require('express-validator');
 const ticketController = require('../controllers/ticketController');
 const validate = require('../middleware/validate');
+const { isAuthenticated, isAuthorized } = require('../middleware/auth');
 
-router.get('/', ticketController.getAllTickets);
+router.use(isAuthenticated);
+
+router.get('/', isAuthorized(['admin', 'organizer']), ticketController.getAllTickets);
 
 router.get('/:id',
-    validate([
-        param('id').isMongoId().withMessage('Invalid ticket ID')
-    ]),
+    validate([param('id').isMongoId().withMessage('Invalid ticket ID')]),
     ticketController.getTicketById
 );
 
 router.post('/',
     validate([
         body('event').isMongoId().withMessage('Invalid event ID'),
-        body('user').isMongoId().withMessage('Invalid user ID'),
         body('status').optional().isIn(['active', 'used', 'cancelled']).withMessage('Invalid status')
     ]),
     ticketController.createTicket
@@ -25,17 +25,14 @@ router.post('/',
 router.put('/:id',
     validate([
         param('id').isMongoId().withMessage('Invalid ticket ID'),
-        body('event').optional().isMongoId().withMessage('Invalid event ID'),
-        body('user').optional().isMongoId().withMessage('Invalid user ID'),
         body('status').optional().isIn(['active', 'used', 'cancelled']).withMessage('Invalid status')
     ]),
     ticketController.updateTicket
 );
 
 router.delete('/:id',
-    validate([
-        param('id').isMongoId().withMessage('Invalid ticket ID')
-    ]),
+    isAuthorized(['admin', 'organizer']),
+    validate([param('id').isMongoId().withMessage('Invalid ticket ID')]),
     ticketController.deleteTicket
 );
 

@@ -13,9 +13,14 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true
     },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true  // This allows the field to be unique but optional
+    },
     password: {
         type: String,
-        required: true
+        // Not required, as Google users won't have a password
     },
     role: {
         type: String,
@@ -25,7 +30,14 @@ const userSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    profilePicture: {
+        type: String,
     }
 });
+
+userSchema.methods.isGoogleUser = function() {
+    return Boolean(this.googleId);
+};
 
 module.exports = mongoose.model('User', userSchema);
