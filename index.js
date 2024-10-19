@@ -29,11 +29,13 @@ const userRoutes = require('./routes/users');
 const eventRoutes = require('./routes/events');
 const ticketRoutes = require('./routes/tickets');
 const reviewRoutes = require('./routes/reviews');
+const authRoutes = require('./routes/auth');
 
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/auth', authRoutes);
 
 
 
