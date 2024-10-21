@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
+const setupSwagger = require('./config/swagger');
 const passport = require('./config/passport');
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use('/api/tickets', ticketRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/auth', authRoutes);
 
+setupSwagger(app);
 
 
 app.get('/', (req, res) => {
