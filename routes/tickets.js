@@ -21,7 +21,7 @@ router.use(isAuthenticated);
  *     summary: Retrieve a list of all tickets
  *     tags: [Tickets]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: A list of tickets.
@@ -45,7 +45,7 @@ router.get('/', isAuthorized(['admin', 'organizer']), ticketController.getAllTic
  *     summary: Get a ticket by ID
  *     tags: [Tickets]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -77,7 +77,7 @@ router.get('/:id',
  *     summary: Create a new ticket
  *     tags: [Tickets]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -113,7 +113,7 @@ router.post('/',
  *     summary: Update a ticket by ID
  *     tags: [Tickets]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -158,7 +158,7 @@ router.put('/:id',
  *     summary: Delete a ticket by ID
  *     tags: [Tickets]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id

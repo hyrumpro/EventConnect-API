@@ -70,7 +70,7 @@ router.use(isAuthenticated);
  *     summary: Create a new event
  *     tags: [Events]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -113,7 +113,7 @@ router.post('/',
  *     summary: Update an event by ID
  *     tags: [Events]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -166,7 +166,7 @@ router.put('/:id',
  *     summary: Delete an event by ID
  *     tags: [Events]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id

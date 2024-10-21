@@ -70,7 +70,7 @@ router.use(isAuthenticated);
  *     summary: Create a new review
  *     tags: [Reviews]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -105,7 +105,7 @@ router.post('/',
  *     summary: Update a review by ID
  *     tags: [Reviews]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -149,7 +149,7 @@ router.put('/:id',
  *     summary: Delete a review by ID
  *     tags: [Reviews]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id

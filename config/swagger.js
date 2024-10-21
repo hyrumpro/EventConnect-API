@@ -18,11 +18,6 @@ const options = {
         ],
         components: {
             securitySchemes: {
-                bearerAuth: {
-                    type: 'http',
-                    scheme: 'bearer',
-                    bearerFormat: 'JWT',
-                },
                 oauth2: {
                     type: 'oauth2',
                     flows: {
@@ -34,9 +29,13 @@ const options = {
                         },
                     },
                 },
+                cookieAuth: {
+                    type: 'apiKey',
+                    in: 'cookie',
+                    name: 'connect.sid',
+                },
             },
             schemas: {
-                // Ticket Schemas
                 Ticket: {
                     type: 'object',
                     required: ['_id', 'event', 'status', 'createdAt', 'updatedAt'],
@@ -100,7 +99,6 @@ const options = {
                     },
                 },
 
-                // Event Schemas
                 Event: {
                     type: 'object',
                     required: [
@@ -468,11 +466,6 @@ const options = {
                 },
             },
         },
-        security: [
-            {
-                bearerAuth: [],
-            },
-        ],
     },
 
     apis: ['./routes/*.js'],
