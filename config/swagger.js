@@ -18,17 +18,6 @@ const options = {
         ],
         components: {
             securitySchemes: {
-                oauth2: {
-                    type: 'oauth2',
-                    flows: {
-                        authorizationCode: {
-                            authorizationUrl: 'https://eventconnect-api.onrender.com/auth/google',
-                            tokenUrl: 'https://eventconnect-api.onrender.com/auth/google/callback',
-                            scopes: {
-                            },
-                        },
-                    },
-                },
                 cookieAuth: {
                     type: 'apiKey',
                     in: 'cookie',
