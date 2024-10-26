@@ -1,10 +1,11 @@
 {
   "name": "byu-team",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node js Project API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch --runInBand",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -25,7 +26,13 @@
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-mock-strategy": "^2.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.2",
+    "supertest": "^7.0.0"
   }
 }
