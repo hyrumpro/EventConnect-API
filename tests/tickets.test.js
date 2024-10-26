@@ -1,4 +1,3 @@
-// tests/tickets.test.js
 const request = require('supertest');
 const app = require('../app');
 const Ticket = require('../models/Ticket');
@@ -53,7 +52,6 @@ describe('Ticket Routes', () => {
             // Mock authenticated session
             const agent = request.agent(app);
 
-            // Simulate authenticated user
             const response = await agent
                 .post('/api/tickets')
                 .send({
@@ -113,7 +111,7 @@ describe('Ticket Routes', () => {
         it('should return 201 for everyone', async () => {
             await request(app)
                 .get('/api/tickets')
-                .expect(201);
+                .expect(200);
         });
     });
 

@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        // Not required, as Google users won't have a password
     },
     role: {
         type: String,

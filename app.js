@@ -44,5 +44,11 @@ app.get('/', (req, res) => {
     res.json({ message: 'Welcome to the Community Event Management System API' });
 });
 
+app.use((req, res, next) => {
+    const error = new Error('Not Found');
+    error.status = 404;
+    next(error);
+});
+
 module.exports = app;
 
