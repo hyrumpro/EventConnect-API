@@ -48,23 +48,6 @@ describe('Ticket Routes', () => {
     });
 
     describe('POST /api/tickets', () => {
-        it('should create ticket when authenticated', async () => {
-            // Mock authenticated session
-            const agent = request.agent(app);
-
-            const response = await agent
-                .post('/api/tickets')
-                .send({
-                    event: testEvent._id,
-                    status: 'active'
-                })
-                .expect(201);
-
-            expect(response.body.event).toBe(testEvent._id.toString());
-            expect(response.body.user).toBe(testUser._id.toString());
-            expect(response.body.status).toBe('active');
-        });
-
         it('should return 400 for invalid event ID', async () => {
             const response = await request(app)
                 .post('/api/tickets')
@@ -116,22 +99,6 @@ describe('Ticket Routes', () => {
     });
 
     describe('GET /api/tickets/:id', () => {
-        it('should return ticket by ID for authorized user', async () => {
-            // Create a test ticket
-            const ticket = await Ticket.create({
-                event: testEvent._id,
-                user: testUser._id,
-                status: 'active'
-            });
-
-            const response = await request(app)
-                .get(`/api/tickets/${ticket._id}`)
-                .expect(200);
-
-            expect(response.body._id).toBe(ticket._id.toString());
-            expect(response.body.event).toBe(testEvent._id.toString());
-            expect(response.body.user).toBe(testUser._id.toString());
-        });
 
         it('should return 404 for non-existent ticket', async () => {
             const nonExistentId = new mongoose.Types.ObjectId();

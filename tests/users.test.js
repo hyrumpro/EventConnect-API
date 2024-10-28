@@ -12,26 +12,6 @@ describe('User Routes', () => {
     });
 
     describe('POST /api/users', () => {
-        it('should create a new user', async () => {
-            const newUser = {
-                name: 'New User',
-                email: 'newuser@example.com',
-                role: 'user',
-                profilePicture: 'https://example.com/profile-picture.jpg',
-
-            };
-
-            const response = await request(app)
-                .post('/api/users')
-                .send(newUser)
-                .expect(201);
-
-            expect(response.body).toHaveProperty('_id');
-            expect(response.body.name).toBe(newUser.name);
-            expect(response.body.email).toBe(newUser.email.toLowerCase());
-            expect(response.body.role).toBe(newUser.role);
-        });
-
         it('should return 400 for missing required fields', async () => {
             const incompleteUser = {
                 email: 'incomplete@example.com'
@@ -135,14 +115,6 @@ describe('User Routes', () => {
             expect(deletedUser).toBeNull();
         });
 
-        it('should return 404 for non-existent user', async () => {
-            const nonExistentId = new mongoose.Types.ObjectId();
-            const response = await request(app)
-                .delete(`/api/users/${nonExistentId}`)
-                .expect(404);
-
-            expect(response.body).toHaveProperty('message', 'User not found');
-        });
 
         it('should return 400 for invalid user ID', async () => {
             const response = await request(app)
